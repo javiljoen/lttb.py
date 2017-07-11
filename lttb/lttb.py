@@ -1,13 +1,20 @@
 import numpy as np
 
 
-def _area_of_triangles(bs, a, c):
-    """Area of a triangle from duples of vertex coordinates
-    Uses implicit numpy boradcasting along first axis of bs"""
-    bs_a = bs-a
-    a_bs = a-bs
-    return 0.5 * abs((a[0] - c[0]) * (bs_a[:, 1])
-                     - (a_bs[:, 0]) * (c[1] - a[1]))
+def _areas_of_triangles(a, bs, c):
+    """Calculate areas of triangles from duples of vertex coordinates.
+
+    Uses implicit numpy broadcasting along first axis of ``bs``.
+
+    Returns
+    -------
+    numpy.array
+        Array of areas of shape (len(bs),)
+    """
+    bs_minus_a = bs - a
+    a_minus_bs = a - bs
+    return 0.5 * abs((a[0] - c[0]) * (bs_minus_a[:, 1])
+                     - (a_minus_bs[:, 0]) * (c[1] - a[1]))
 
 
 def downsample(data, n_out):
@@ -15,7 +22,6 @@ def downsample(data, n_out):
     
     Reference
     ---------
-    
     Sveinn Steinarsson. 2013. Downsampling Time Series for Visual
     Representation. MSc thesis. University of Iceland.
     
@@ -27,8 +33,8 @@ def downsample(data, n_out):
     
     Returns
     -------
-    
-    numpy.array of shape (n_out, 2).
+    numpy.array
+        Array of shape (n_out, 2)
     """
     # Validate input
     if data.shape[1] != 2:
@@ -72,7 +78,7 @@ def downsample(data, n_out):
         bs = this_bin
         c = next_bin.mean(axis=0)
 
-        areas = _area_of_triangles(bs=bs, a=a, c=c)
+        areas = _areas_of_triangles(a, bs, c)
 
         out[i + 1] = bs[np.argmax(areas)]
 
