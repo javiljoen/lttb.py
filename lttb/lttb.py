@@ -1,10 +1,13 @@
 import numpy as np
 
 
-def _area_of_triangle(b, a, c):
-    """Area of a triangle from duples of vertex coordinates"""
-    return 0.5 * abs((a[0] - c[0]) * (b[1] - a[1])
-                     - (a[0] - b[0]) * (c[1] - a[1]))
+def _area_of_triangles(bs, a, c):
+    """Area of a triangle from duples of vertex coordinates
+    Uses implicit numpy boradcasting along first axis of bs"""
+    bs_a = bs-a
+    a_bs = a-bs
+    return 0.5 * abs((a[0] - c[0]) * (bs_a[:, 1])
+                     - (a_bs[:, 0]) * (c[1] - a[1]))
 
 
 def downsample(data, n_out):
@@ -69,9 +72,8 @@ def downsample(data, n_out):
         bs = this_bin
         c = next_bin.mean(axis=0)
 
-        areas = np.apply_along_axis(
-            _area_of_triangle, axis=1, arr=bs, a=a, c=c
-        )
+        areas = _area_of_triangles(bs=bs, a=a, c=c)
+
         out[i + 1] = bs[np.argmax(areas)]
 
     return out
