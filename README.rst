@@ -52,3 +52,10 @@ Requirements
 
 
 Licence: MIT
+
+
+Contributors
+------------
+
+- Jack Viljoen (@javiljoen) – original Numpy implementation
+- Guillaume Bethouart (@guillaumeB) – performance improvements
