@@ -40,7 +40,7 @@ def downsample(data, n_out):
     if data.shape[1] != 2:
         raise ValueError('data should have 2 columns')
 
-    if np.any(data[1:, 0] <= data[:-1, 0]):
+    if np.any(data[1:, 0] < data[:-1, 0]):
         raise ValueError('data should be sorted on first column')
 
     if n_out > data.shape[0]:
