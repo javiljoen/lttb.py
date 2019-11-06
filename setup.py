@@ -10,17 +10,22 @@ setuptools.setup(
 
     description='Largest-Triangle-Three-Buckets algorithm for downsampling time series–like data',
     long_description=open('README.rst').read(),
+    long_description_content_type='text/x-rst',
 
     packages=['lttb'],
 
     install_requires=[
         'numpy',
     ],
+    python_requires='>=3.5',
 
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
-        'Programming Language :: Python',
+        'Development Status :: 4 - Beta',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
 )

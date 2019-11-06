@@ -1,5 +1,5 @@
-lttb.py
-=======
+lttb.py |pypi|
+==============
 
 Numpy implementation of Steinarsson’s *Largest-Triangle-Three-Buckets*
 algorithm for downsampling time series–like data
@@ -31,17 +31,15 @@ Usage
 For example, here is the data set provided in ``tests`` downsampled to 100
 points:
 
-.. image:: tests/timeseries.png
+.. image:: http://github.com/javiljoen/lttb.py/raw/master/tests/timeseries.png
 
 
 Installation
 ------------
 
-Download the source code and install the ``lttb`` package into your (virtual)
-environment::
+To install the ``lttb`` package into your (virtual) environment::
 
-   git clone https://github.com/javiljoen/lttb.py.git
-   pip install ./lttb.py
+   pip install lttb
 
 
 Requirements
@@ -59,3 +57,8 @@ Contributors
 
 - Jack Viljoen (@javiljoen) – original Numpy implementation
 - Guillaume Bethouart (@guillaumeB) – performance improvements
+
+
+
+.. |pypi| image:: https://img.shields.io/pypi/v/lttb?color=blue
+   :target: https://pypi.org/project/lttb/
