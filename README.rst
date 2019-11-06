@@ -31,7 +31,7 @@ Usage
 For example, here is the data set provided in ``tests`` downsampled to 100
 points:
 
-.. image:: http://github.com/javiljoen/lttb.py/raw/master/tests/timeseries.png
+.. image:: https://github.com/javiljoen/lttb.py/raw/master/tests/timeseries.png
 
 
 Installation
