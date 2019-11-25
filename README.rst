@@ -1,63 +1,69 @@
+==============
 lttb.py |pypi|
 ==============
 
-Numpy implementation of Steinarsson’s *Largest-Triangle-Three-Buckets*
-algorithm for downsampling time series–like data
+Numpy implementation of Steinarsson’s *Largest-Triangle-Three-Buckets* algorithm
+for downsampling time series–like data
 
-Based on the original JavaScript code:
-
+It is based on the original JavaScript code at
 https://github.com/sveinn-steinarsson/flot-downsample
-
-and:
-
-Sveinn Steinarsson. 2013.  *Downsampling Time Series for Visual
-Representation.* MSc thesis. University of Iceland.
-
-A test data set is provided in ``tests/timeseries.csv``.
-It was downloaded from http://flot.base.is/ and converted from JSON to CSV.
+and Sveinn Steinarsson’s 2013 MSc thesis
+*Downsampling Time Series for Visual Representation.*
 
 
 Usage
------
+=====
 
 .. code:: python
 
    import numpy as np
    import lttb
+
    data = np.array([range(100), np.random.random(100)]).T
    small_data = lttb.downsample(data, n_out=20)
    assert small_data.shape == (20, 2)
 
-For example, here is the data set provided in ``tests`` downsampled to 100
-points:
+A test data set is provided in the source repo in ``tests/timeseries.csv``.
+It was downloaded from http://flot.base.is/ and converted from JSON to CSV.
+
+This is what it looks like, downsampled to 100 points:
 
 .. image:: https://github.com/javiljoen/lttb.py/raw/master/tests/timeseries.png
 
 
 Installation
-------------
+============
 
 To install the ``lttb`` package into your (virtual) environment::
 
    pip install lttb
 
 
-Requirements
-^^^^^^^^^^^^
+History
+=======
 
-* Python 3
-* Numpy
+0.2.1 / 2019-11-25
+------------------
 
+- Versions are now managed with ``setuptools_scm`` rather than ``bumpversion``.
 
-Licence: MIT
+0.2.0 / 2018-02-11
+------------------
+
+- Performance improvements
+- Released on PyPI (on 2019-11-06)
+
+0.1.0 / 2017-03-18
+------------------
+
+- Initial implementation
 
 
 Contributors
-------------
+============
 
 - Jack Viljoen (@javiljoen) – original Numpy implementation
 - Guillaume Bethouart (@guillaumeB) – performance improvements
-
 
 
 .. |pypi| image:: https://img.shields.io/pypi/v/lttb?color=blue
