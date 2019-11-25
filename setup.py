@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='lttb',
-    version='0.2.0',
+    use_scm_version=True,
     url='https://github.com/javiljoen/lttb.py',
 
     author='Jack Viljoen',
@@ -17,6 +17,7 @@ setuptools.setup(
     install_requires=[
         'numpy',
     ],
+    setup_requires=['setuptools_scm'],
     python_requires='>=3.5',
 
     classifiers=[
