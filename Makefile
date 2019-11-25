@@ -27,10 +27,10 @@ lint:
 	black --check .
 
 test:
-	pytest
+	pytest -n 2
 
 test-all:
-	PYENV_VERSION="" tox -p 3
+	PYENV_VERSION="" tox -p 2
 
 build: clean
 	python setup.py sdist bdist_wheel
