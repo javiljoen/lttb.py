@@ -68,6 +68,7 @@ History
 ------------------
 
 - Versions are now managed with ``setuptools_scm`` rather than ``bumpversion``.
+- The code is formatted with Black.
 
 0.2.0 / 2018-02-11
 ------------------

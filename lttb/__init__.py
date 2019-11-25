@@ -1,1 +1,1 @@
-from .lttb import downsample
+from .lttb import downsample  # noqa

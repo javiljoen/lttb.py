@@ -13,24 +13,25 @@ def _areas_of_triangles(a, bs, c):
     """
     bs_minus_a = bs - a
     a_minus_bs = a - bs
-    return 0.5 * abs((a[0] - c[0]) * (bs_minus_a[:, 1])
-                     - (a_minus_bs[:, 0]) * (c[1] - a[1]))
+    return 0.5 * abs(
+        (a[0] - c[0]) * (bs_minus_a[:, 1]) - (a_minus_bs[:, 0]) * (c[1] - a[1])
+    )
 
 
 def downsample(data, n_out):
     """Downsample ``data`` to ``n_out`` points using the LTTB algorithm.
-    
+
     Reference
     ---------
     Sveinn Steinarsson. 2013. Downsampling Time Series for Visual
     Representation. MSc thesis. University of Iceland.
-    
+
     Constraints
     -----------
       - ncols(data) == 2
       - 3 <= n_out <= nrows(data)
       - ``data`` should be sorted on the first column.
-    
+
     Returns
     -------
     numpy.array
@@ -38,23 +39,23 @@ def downsample(data, n_out):
     """
     # Validate input
     if data.shape[1] != 2:
-        raise ValueError('data should have 2 columns')
+        raise ValueError("data should have 2 columns")
 
     if np.any(data[1:, 0] <= data[:-1, 0]):
-        raise ValueError('data should be sorted on first column')
+        raise ValueError("data should be sorted on first column")
 
     if n_out > data.shape[0]:
-        raise ValueError('n_out must be <= number of rows in data')
+        raise ValueError("n_out must be <= number of rows in data")
 
     if n_out == data.shape[0]:
         return data
 
     if n_out < 3:
-        raise ValueError('Can only downsample to a minimum of 3 points')
+        raise ValueError("Can only downsample to a minimum of 3 points")
 
     # Split data into bins
     n_bins = n_out - 2
-    data_bins = np.array_split(data[1: len(data) - 1], n_bins)
+    data_bins = np.array_split(data[1 : len(data) - 1], n_bins)
 
     # Prepare output array
     # First and last points are the same as in the input.
@@ -72,7 +73,7 @@ def downsample(data, n_out):
         if i < n_bins - 1:
             next_bin = data_bins[i + 1]
         else:
-            next_bin = data[len(data) - 1:]
+            next_bin = data[len(data) - 1 :]
 
         a = out[i]
         bs = this_bin
