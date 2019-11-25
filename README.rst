@@ -39,6 +39,28 @@ To install the ``lttb`` package into your (virtual) environment::
    pip install lttb
 
 
+Development
+===========
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
+
+In a virtual environment, install the dependencies and development tools::
+
+   pip install -r requirements.txt
+   pip install -e .
+   pip install -r requirements-dev.txt
+
+The linters and tests can then be run with the commands in the ``Makefile``::
+
+   make lint
+   make test
+   make test-all
+
+Note that the ``test-all`` task requires the versions of Python used by ``tox``
+to have already been installed with ``pyenv``.
+
+
 History
 =======
 

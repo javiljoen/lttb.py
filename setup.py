@@ -18,7 +18,6 @@ setuptools.setup(
         'numpy',
     ],
     setup_requires=['setuptools_scm'],
-    python_requires='>=3.5',
 
     classifiers=[
         'Development Status :: 4 - Beta',
