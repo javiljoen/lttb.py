@@ -1,5 +1,3 @@
-from statistics import variance
-
 import lttb
 import numpy as np
 from hypothesis import assume, given
@@ -25,7 +23,7 @@ def test_downsampled_test_data_is_correct_shape(n_out):
 def test_downsampling_test_data_retains_variation(n_out):
     data = load_test_data()
     out = lttb.downsample(data, n_out)
-    assert variance(out[:, 1]) >= 29.5  # var(data) == 30.9968
+    assert np.var(out[:, 1]) >= 29.5  # var(data) == 30.9968
 
 
 def gen_valid_data(nrows):
@@ -51,6 +49,6 @@ def test_downsampled_random_data_is_correct_shape(data, n_out):
 def test_downsampling_random_data_retains_variation(data, n_out):
     assume(n_out <= len(data))
     out = lttb.downsample(data, n_out)
-    var_in = variance(data[:, 1])
-    var_out = variance(out[:, 1])
+    var_in = np.var(data[:, 1])
+    var_out = np.var(out[:, 1])
     assert var_out >= 0.95 * var_in
