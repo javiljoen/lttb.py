@@ -1,6 +1,6 @@
-==============
-lttb.py |pypi|
-==============
+===================
+lttb.py |pypi| |ci|
+===================
 
 Numpy implementation of Steinarsson’s *Largest-Triangle-Three-Buckets* algorithm
 for downsampling time series–like data
@@ -91,3 +91,6 @@ Contributors
 
 .. |pypi| image:: https://img.shields.io/pypi/v/lttb?color=blue
    :target: https://pypi.org/project/lttb/
+
+.. |ci| image:: https://travis-ci.com/javiljoen/lttb.py.svg?branch=master
+   :target: https://travis-ci.com/javiljoen/lttb.py
