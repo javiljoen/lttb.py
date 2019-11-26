@@ -10,6 +10,7 @@ setuptools.setup(
     long_description=open("README.rst").read(),
     long_description_content_type="text/x-rst",
     packages=["lttb"],
+    package_dir={"": "src"},
     install_requires=["numpy"],
     setup_requires=["setuptools_scm"],
     classifiers=[
