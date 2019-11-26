@@ -10,7 +10,7 @@ cache:
 
 install:
   - pip install -U pip
-  - pip install -U pytest hypothesis
+  - pip install --ignore-installed pytest hypothesis
   - pip install .
 
 script:
