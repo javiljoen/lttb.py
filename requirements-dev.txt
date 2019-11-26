@@ -1,4 +1,5 @@
 black
+coverage
 flake8
 flake8-bugbear
 hypothesis[numpy]
