@@ -33,8 +33,8 @@ def gen_valid_data(nrows):
 
 
 @given(
-    builds(gen_valid_data, integers(min_value=3, max_value=10000)),
-    integers(min_value=3, max_value=10000),
+    builds(gen_valid_data, integers(min_value=3, max_value=5000)),
+    integers(min_value=3, max_value=5000),
 )
 def test_downsampled_random_data_is_correct_shape(data, n_out):
     assume(n_out <= len(data))
