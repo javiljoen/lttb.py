@@ -6,7 +6,7 @@ setuptools.setup(
     url="https://github.com/javiljoen/lttb.py",
     author="Jack Viljoen",
     author_email="javiljoen@users.noreply.github.com",
-    description="Largest-Triangle-Three-Buckets algorithm for downsampling time series–like data",
+    description="Largest-Triangle-Three-Buckets algorithm for downsampling time series-like data",
     long_description=open("README.rst").read(),
     long_description_content_type="text/x-rst",
     packages=["lttb"],
