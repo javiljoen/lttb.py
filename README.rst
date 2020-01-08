@@ -64,6 +64,11 @@ to have already been installed with ``pyenv``.
 History
 =======
 
+0.2.2 / 2020-01-08
+------------------
+
+- ``setup.py`` was fixed so that this package can be installed in Python 2 again.
+
 0.2.1 / 2019-11-25
 ------------------
 
