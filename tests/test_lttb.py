@@ -52,3 +52,9 @@ def test_downsampling_random_data_retains_variation(data, n_out):
     var_in = np.var(data[:, 1])
     var_out = np.var(out[:, 1])
     assert var_out >= 0.95 * var_in
+
+
+def test_downsampled_repeated_numbers():
+    data = np.array([[0.0, 0.0], [0.0, 1.0], [0.5, 1.5], [0.5, 1.5]])
+    out = lttb.downsample(data, 3)
+    assert out.shape == (3, 2)
