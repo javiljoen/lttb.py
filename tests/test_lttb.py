@@ -1,7 +1,8 @@
-import lttb
 import numpy as np
 from hypothesis import assume, given
 from hypothesis.strategies import builds, integers
+
+import lttb
 
 
 def load_test_data():

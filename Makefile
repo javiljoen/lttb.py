@@ -33,8 +33,9 @@ clean-caches:
 	rm -fr htmlcov/
 
 lint:
-	flake8 lttb tests
+	flake8 src tests
 	black --check .
+	isort --check src tests
 
 test:
 	pytest -n 2
