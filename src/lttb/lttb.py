@@ -1,5 +1,9 @@
 import numpy as np
 
+from .validators import has_two_columns, validate, x_is_strictly_increasing
+
+default_validators = [has_two_columns, x_is_strictly_increasing]
+
 
 def _areas_of_triangles(a, bs, c):
     """Calculate areas of triangles from duples of vertex coordinates.
@@ -18,7 +22,7 @@ def _areas_of_triangles(a, bs, c):
     )
 
 
-def downsample(data, n_out):
+def downsample(data, n_out, validators=default_validators):
     """Downsample ``data`` to ``n_out`` points using the LTTB algorithm.
 
     Reference
@@ -26,23 +30,35 @@ def downsample(data, n_out):
     Sveinn Steinarsson. 2013. Downsampling Time Series for Visual
     Representation. MSc thesis. University of Iceland.
 
+    Parameters
+    ----------
+    data : numpy.array
+        A 2-dimensional array with time values in the first column
+    n_out : int
+        Number of data points to downsample to
+    validators : sequence of callables, optional
+        Validation functions that take an array as argument and
+        raise ``ValueError`` if the array fails some criterion
+
     Constraints
     -----------
       - ncols(data) == 2
       - 3 <= n_out <= nrows(data)
-      - ``data`` should be sorted on the first column.
+      - the first column of ``data`` should be strictly monotonic.
 
     Returns
     -------
     numpy.array
         Array of shape (n_out, 2)
+
+    Raises
+    ------
+    ValueError
+        If ``data`` fails the validation checks,
+        or if ``n_out`` falls outside the valid range.
     """
     # Validate input
-    if data.shape[1] != 2:
-        raise ValueError("data should have 2 columns")
-
-    if np.any(data[1:, 0] <= data[:-1, 0]):
-        raise ValueError("data should be sorted on first column")
+    validate(data, validators)
 
     if n_out > data.shape[0]:
         raise ValueError("n_out must be <= number of rows in data")

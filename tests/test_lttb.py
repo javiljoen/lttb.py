@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 from hypothesis import assume, given
 from hypothesis.strategies import builds, integers
 
@@ -53,3 +54,11 @@ def test_downsampling_random_data_retains_variation(data, n_out):
     var_in = np.var(data[:, 1])
     var_out = np.var(out[:, 1])
     assert var_out >= 0.95 * var_in
+
+
+@pytest.mark.parametrize("n_out", [2, 7])
+def test_invalid_n_out_raises_error(n_out):
+    data = gen_valid_data(6)
+
+    with pytest.raises(ValueError):
+        lttb.downsample(data, n_out)
