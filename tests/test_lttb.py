@@ -62,3 +62,18 @@ def test_invalid_n_out_raises_error(n_out):
 
     with pytest.raises(ValueError):
         lttb.downsample(data, n_out)
+
+
+def test_downsample_with_default_validators_raises_error_with_multiple_messages():
+    data = np.random.standard_normal((4, 3))  # 3 columns
+    data[:, 0] = [1, 2, 2, 3]  # unsorted x values
+    data[2, 1] = np.nan  # missing y value
+
+    with pytest.raises(ValueError) as exc:
+        lttb.downsample(data, 3)
+
+    assert exc.match(
+        "data does not have 2 columns; "
+        "data contains NaN values; "
+        "first column is not strictly increasing"
+    )

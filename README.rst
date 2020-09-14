@@ -34,8 +34,9 @@ This is what it looks like, downsampled to 100 points:
 Input validation
 ----------------
 
-By default, `downsample()` checks that the data is of the right shape
-and that the values in the first column are strictly increasing.
+By default, `downsample()` checks that the data is of the right shape,
+that the values in the first column are strictly increasing,
+and that there are no missing (NaN) values in the data.
 These checks can be skipped (e.g. if you know that your data will always meet these constraints),
 or additional checks can be added (e.g. that the time values must be evenly spaced),
 by passing in a different list of validation functions, e.g.:

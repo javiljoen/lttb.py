@@ -2,6 +2,7 @@ import numpy as np
 import pytest
 
 from lttb.validators import (
+    contains_no_nans,
     has_two_columns,
     validate,
     x_is_regular,
@@ -88,14 +89,33 @@ def test_x_is_regular_fails_if_x_intervals_are_not_constant():
         x_is_regular(data)
 
 
+def test_contains_no_nans_passes_with_valid_data(valid_data):
+    assert contains_no_nans(valid_data) is None
+
+
+def test_contains_no_nans_fails_if_nan_in_xs():
+    data = np.array([[0, 1, 2, np.nan], [0.0, 1.0, 2.0, 3.0]]).T
+
+    with pytest.raises(ValueError):
+        contains_no_nans(data)
+
+
+def test_contains_no_nans_fails_if_nan_in_ys():
+    data = np.array([[0, 1, 2, 3], [1.0, np.nan, 2.6, np.nan]]).T
+
+    with pytest.raises(ValueError):
+        contains_no_nans(data)
+
+
 def test_validate_multiple_criteria_passes_for_valid_data(valid_data):
     validate(valid_data, [has_two_columns, x_is_regular])
 
 
-def test_validate_raises_with_multiple_messages(valid_data):
+def test_validate_raises_with_multiple_messages():
     data = np.random.standard_normal((4, 3))  # 3 columns
     data[:, 0] = [1, 4, 2, 9]  # unsorted x values
-    validators = [has_two_columns, x_is_sorted, x_is_regular]
+    data[2, 1] = np.nan  # missing y value
+    validators = [has_two_columns, x_is_sorted, x_is_regular, contains_no_nans]
 
     with pytest.raises(ValueError) as exc:
         validate(data, validators)
@@ -103,5 +123,6 @@ def test_validate_raises_with_multiple_messages(valid_data):
     assert exc.match(
         "data does not have 2 columns; "
         "data is not sorted on the first column; "
-        "first column is not regularly spaced"
+        "first column is not regularly spaced; "
+        "data contains NaN values"
     )

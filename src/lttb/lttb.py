@@ -1,8 +1,13 @@
 import numpy as np
 
-from .validators import has_two_columns, validate, x_is_strictly_increasing
+from .validators import (
+    contains_no_nans,
+    has_two_columns,
+    validate,
+    x_is_strictly_increasing,
+)
 
-default_validators = [has_two_columns, x_is_strictly_increasing]
+default_validators = [has_two_columns, contains_no_nans, x_is_strictly_increasing]
 
 
 def _areas_of_triangles(a, bs, c):

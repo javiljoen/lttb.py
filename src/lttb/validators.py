@@ -24,6 +24,11 @@ def x_is_regular(data):
         raise ValueError("first column is not regularly spaced")
 
 
+def contains_no_nans(data):
+    if np.any(np.isnan(data)):
+        raise ValueError("data contains NaN values")
+
+
 def validate(data, validators):
     """Checks an array against each of the given validators.
 
