@@ -112,6 +112,14 @@ then activate them in the project folder and run the tests with, e.g.::
 History
 =======
 
+0.3.0 / 2020-09-15
+------------------
+
+- Validation of input data is now configurable.
+- New default: ``downsample()`` raises ``ValueError`` if input data contains NaN values.
+  This can be disabled by removing ``contains_no_nans()`` from the list of validators.
+- [dev] Imports are now sorted with isort.
+
 0.2.2 / 2020-01-08
 ------------------
 
@@ -120,8 +128,8 @@ History
 0.2.1 / 2019-11-25
 ------------------
 
-- Versions are now managed with ``setuptools_scm`` rather than ``bumpversion``.
-- The code is formatted with Black.
+- [dev] Versions are now managed with ``setuptools_scm`` rather than ``bumpversion``.
+- [dev] The code is formatted with Black.
 
 0.2.0 / 2018-02-11
 ------------------
